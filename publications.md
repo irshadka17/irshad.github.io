@@ -289,7 +289,7 @@ function drawCoauthorGraph(nodes, links) {
 async function updateScholarMetrics() {
     try {
         // Replace this URL with your own backend endpoint that returns Scholar data as JSON
-        const response = await fetch("YOUR_SCHOLAR_API_ENDPOINT?user=3aPgewgAAAAJ");
+        const response = await fetch("/_data/scholar.json");
         const data = await response.json();
 
         if (data.metrics) {
@@ -350,3 +350,4 @@ document.addEventListener("DOMContentLoaded", () => {
     updateScholarMetrics();
 });
 </script>
+
