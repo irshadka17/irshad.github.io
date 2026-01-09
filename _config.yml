@@ -4,13 +4,14 @@ theme: null
 markdown: kramdown
 
 # Contact Information
-email_primary: "your-email-1@example.com"
-email_secondary: "your-email-2@example.com"
+email_primary: "irshad.kariyattuparamb@elettra.eu"
+email_secondary: "ikariyat@ictp.it"
 
-mobile_primary: "+39-123-456-7890"
-mobile_secondary: "+39-987-654-3210"
+mobile_primary: "+39-040-375-8051"
+mobile_secondary: "+39-040-375-8434"
 
 github: "https://github.com/irshadka17"
-linkedin: "https://www.linkedin.com/in/your-profile"
-orcid: "https://orcid.org/0000-0000-0000-0000"
-researchgate: "https://www.researchgate.net/profile/Your-Name"
+linkedin: "https://it.linkedin.com/in/irshad-k-a-359a53103"
+orcid: "https://orcid.org/0000-0002-2790-6430"
+researchgate: "https://www.researchgate.net/profile/Irshad-K-A"
+
