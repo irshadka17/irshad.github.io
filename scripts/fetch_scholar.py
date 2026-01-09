@@ -56,13 +56,13 @@ for row in rows:
     cited_by = int(cit_tag.text.strip()) if cit_tag and cit_tag.text.strip().isdigit() else 0
 
    year_tag = row.find("span", class_="gsc_a_h gsc_a_hc gs_ibl")
-year = int(year_tag.text.strip()) if year_tag and year_tag.text.strip().isdigit() else None
+   year = int(year_tag.text.strip()) if year_tag and year_tag.text.strip().isdigit() else None
 
-publications.append({
+   publications.append({
     "title": title,
     "cited_by": cited_by,
     "year": year
-})
+   })
 
 # ---------------------------
 # Save JSON
