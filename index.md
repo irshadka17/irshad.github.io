@@ -14,11 +14,11 @@ I have extensive experience in user support, serving as the local contact for su
 
 Additionally, I manage significant operational responsibilities at the beamline, which include:
 
--Preparing and documenting monthly and yearly beamline reports.
+- Preparing and documenting monthly and yearly beamline reports.
 
--Conducting technical evaluations of research proposals.
+- Conducting technical evaluations of research proposals.
 
--Overseeing the periodic maintenance of beamline facilities.
+- Overseeing the periodic maintenance of beamline facilities.
 
 My expertise in both the technical execution of complex experiments and the operational management of a major scientific facility makes me a versatile and valuable asset to any research team.
 
@@ -65,6 +65,7 @@ fetch("{{ '/assets/data/scholar.json' | relative_url }}")
       "<p>Error loading publications.</p>";
   });
 </script>
+
 
 
 
