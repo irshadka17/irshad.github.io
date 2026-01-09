@@ -247,3 +247,13 @@ footer {
     background: var(--card);
     margin-top: 20px;
 }
+
+.right-column {
+  flex: 1;
+  position: sticky;
+  top: 1rem;
+  background: var(--card);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
