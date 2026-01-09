@@ -3,9 +3,14 @@ layout: default
 title: Home
 ---
 
+<div class="two-column">
+
+  <!-- LEFT COLUMN -->
+  <div class="left-column">
+
 ## Welcome
 
-Experienced researcher specializing in X-ray diffraction studies under extreme conditions. My work focuses on carrying out high-pressure, high/low-temperature experiments on various materials, leading to novel discoveries in materials science. I also use spectroscopic techniques like Raman spectroscopy to corraborate and establish the physics and chemistry of materaisls.
+Experienced researcher specializing in X-ray diffraction studies under extreme conditions. My work focuses on carrying out high-pressure, high/low-temperature experiments on various materials, leading to novel discoveries in materials science. I also use spectroscopic techniques like Raman spectroscopy to corroborate and establish the physics and chemistry of materials.
 
 A key aspect of my professional experience involves developing novel experimental strategies for diamond anvil cell (DAC) based studies, pushing the boundaries of what is possible in extreme conditions research.
 
@@ -14,9 +19,7 @@ I have extensive experience in user support, serving as the local contact for su
 Additionally, I manage significant operational responsibilities at the beamline, which include:
 
 - Conducting technical evaluations of research proposals.
-
 - Overseeing the periodic maintenance of beamline facilities.
-
 - Preparing and documenting monthly and yearly beamline reports.
 
 My expertise in both the technical execution of complex experiments and the operational management of a major scientific facility makes me a versatile and valuable asset to any research team.
@@ -31,8 +34,6 @@ My expertise in both the technical execution of complex experiments and the oper
 fetch("{{ '/assets/data/scholar.json' | relative_url }}")
   .then(response => response.json())
   .then(data => {
-    console.log("Loaded scholar.json:", data);
-
     const pubs = data.publications || [];
     const valid = pubs.filter(p => p.year);
     const recent = valid.sort((a, b) => b.year - a.year).slice(0, 5);
@@ -59,11 +60,22 @@ fetch("{{ '/assets/data/scholar.json' | relative_url }}")
     });
   })
   .catch(err => {
-    console.error("Error loading publications:", err);
     document.getElementById("recentPubs").innerHTML =
       "<p>Error loading publications.</p>";
   });
 </script>
+
+  </div> <!-- END LEFT COLUMN -->
+
+
+  <!-- RIGHT COLUMN -->
+  <div class="right-column">
+
+## Profile
+
+<div class="profile-photo-container">
+  <img src="{{ '/assets/images/profile.jpg' | relative_url }}" alt="Profile photo" class="profile-photo">
+</div>
 
 ## Contact
 
@@ -113,9 +125,6 @@ fetch("{{ '/assets/data/scholar.json' | relative_url }}")
   </ul>
 </div>
 
+  </div> <!-- END RIGHT COLUMN -->
 
-
-
-
-
-
+</div> <!-- END TWO COLUMN -->
