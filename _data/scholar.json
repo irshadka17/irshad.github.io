@@ -1,9 +1,90 @@
 {
   "metrics": {
-    "total_citations": 0,
-    "h_index": 0,
-    "i10_index": 0,
+    "total_citations": 234,
+    "h_index": 8,
+    "i10_index": 7,
     "citations_per_year": {}
   },
-  "publications": []
+  "publications": [
+    {
+      "title": "Crystal structural evolution of Ru3Sn7 under pressure and its implication on possible electronic changes",
+      "cited_by": 0
+    },
+    {
+      "title": "Anomalous Pressure Dependence of the Charge Density Wave and Fermi Surface Reconstruction in",
+      "cited_by": 0
+    },
+    {
+      "title": "Pressure-Driven Phase Evolution and Optoelectronic Properties of Lead-free Halide Perovskite RbTeBr",
+      "cited_by": 0
+    },
+    {
+      "title": "An Experimental Investigation Unravelling the Aberrant Thermo-Mechanical Behaviour of Re-loaded Zeolite Na-A",
+      "cited_by": 2
+    },
+    {
+      "title": "Low-temperature spin-phonon coupling and high-pressure phase transitions in the honeycomb magnetoelectric",
+      "cited_by": 0
+    },
+    {
+      "title": "Evolution of topological phases of  under hydrostatic pressure",
+      "cited_by": 0
+    },
+    {
+      "title": "Temperature\u2010Dependent Phase Evolution of LaVO4 via Solid\u2010State Synthesis Route",
+      "cited_by": 0
+    },
+    {
+      "title": "Pressure effects on the surface enhanced Raman spectroscopy of ZIF-67/R6G system",
+      "cited_by": 0
+    },
+    {
+      "title": "Charge conduction and relaxation in",
+      "cited_by": 3
+    },
+    {
+      "title": "Structural changes in honeycomb layers of Mn3NiTa2O9 under pressures up to 14 GPa using in situ synchrotron x-ray diffraction",
+      "cited_by": 1
+    },
+    {
+      "title": "Process\u2014structure correlations in co-precipitation synthesized lanthanum zirconates",
+      "cited_by": 5
+    },
+    {
+      "title": "Iso-structural phase transition in pyrochlore iridates (SmBix)2Ir2O7 (x = 0, 0.02, and 0.10): high-pressure Raman and x-ray diffraction studies",
+      "cited_by": 1
+    },
+    {
+      "title": "Hard X-ray Diffraction Beamlines at Elettra for Material Science: The Present and the Future",
+      "cited_by": 0
+    },
+    {
+      "title": "Pressure-induced phase transition in pyrochlore iridates (SmBi)IrO ( 0, 0.02, and 0.10): Raman and X-ray diffraction studies",
+      "cited_by": 1
+    },
+    {
+      "title": "Pressure-induced multiple phase transitions in the magnetoelectric",
+      "cited_by": 7
+    },
+    {
+      "title": "Pressure-driven structural and electronic phase transitions in type II multiferroic MnSb 2 Se 4",
+      "cited_by": 0
+    },
+    {
+      "title": "Structural Stability and Phase Transitions in Zeolite A: An In Situ High Pressure\u2013High Temperature Investigation",
+      "cited_by": 3
+    },
+    {
+      "title": "High-Pressure High-Temperature Structural Stability of Zeolite-A",
+      "cited_by": 0
+    },
+    {
+      "title": "Removal of Cs+ and Sr2+ ions from simulated radioactive waste solutions using Zeolite-A synthesized from kaolin and their structural stability at high pressures",
+      "cited_by": 59
+    },
+    {
+      "title": "Structural phase transition, equation of state and phase diagram of functional rare earth sesquioxide ceramics (Eu1\u2212xLax)2O3",
+      "cited_by": 11
+    }
+  ]
 }
