@@ -252,7 +252,7 @@ footer {
   flex: 1;
   position: sticky;
   top: 1rem;
-  background: linear-gradient(135deg, #e8eefc, #ffffff);
+  border: 1px solid rgba(0,0,0,0.1);
   padding: 1.5rem;
   border-radius: 12px;
 }
