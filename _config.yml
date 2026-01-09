@@ -2,3 +2,15 @@ title: "Irshad – Research Website"
 description: "Beamline Scientist | High-Pressure XRD | Synchrotron Methods"
 theme: null
 markdown: kramdown
+
+# Contact Information
+email_primary: "your-email-1@example.com"
+email_secondary: "your-email-2@example.com"
+
+mobile_primary: "+39-123-456-7890"
+mobile_secondary: "+39-987-654-3210"
+
+github: "https://github.com/irshadka17"
+linkedin: "https://www.linkedin.com/in/your-profile"
+orcid: "https://orcid.org/0000-0000-0000-0000"
+researchgate: "https://www.researchgate.net/profile/Your-Name"
