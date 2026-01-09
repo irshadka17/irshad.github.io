@@ -1,3 +1,7 @@
+/* --------------------------------------------------
+   THEME VARIABLES
+-------------------------------------------------- */
+
 /* Light mode */
 :root {
     --bg: #f5f5f5;
@@ -6,7 +10,7 @@
     --accent: #1f3b73;
 }
 
-/* Dark mode (auto-detect) */
+/* Dark mode */
 @media (prefers-color-scheme: dark) {
     :root {
         --bg: #121212;
@@ -15,6 +19,10 @@
         --accent: #4c8cff;
     }
 }
+
+/* --------------------------------------------------
+   GLOBAL STYLES
+-------------------------------------------------- */
 
 body {
     margin: 0;
@@ -63,7 +71,102 @@ footer {
     margin-top: 40px;
 }
 
-/* Publication cards */
+/* --------------------------------------------------
+   TWO-COLUMN LAYOUT
+-------------------------------------------------- */
+
+.two-column {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.left-column {
+    flex: 2;
+}
+
+.right-column {
+    flex: 1;
+    position: sticky;
+    top: 1rem;
+}
+
+/* Responsive layout */
+@media (max-width: 900px) {
+    .two-column {
+        flex-direction: column;
+    }
+    .right-column {
+        position: static;
+        width: 100%;
+    }
+}
+
+/* --------------------------------------------------
+   PROFILE PHOTO
+-------------------------------------------------- */
+
+.profile-photo-container {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.profile-photo {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #ddd;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+/* --------------------------------------------------
+   CONTACT CARD
+-------------------------------------------------- */
+
+.contact-card {
+    background: var(--card);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.contact-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.8rem;
+    font-size: 1.05rem;
+}
+
+.contact-list .icon {
+    font-size: 1.3rem;
+    margin-right: 0.7rem;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+    .contact-card {
+        padding: 1.2rem;
+        max-width: 100%;
+    }
+    .contact-list li {
+        font-size: 1rem;
+    }
+    .contact-list .icon {
+        font-size: 1.2rem;
+    }
+}
+
+/* --------------------------------------------------
+   PUBLICATION CARDS
+-------------------------------------------------- */
+
 .pub-card {
     background: var(--card);
     border-left: 5px solid var(--accent);
@@ -86,7 +189,6 @@ footer {
     text-decoration: underline;
 }
 
-/* Badge */
 .badge {
     display: inline-block;
     background: var(--accent);
@@ -94,25 +196,12 @@ footer {
     padding: 4px 10px;
     border-radius: 12px;
     font-size: 0.85em;
-    margin-left: 0;
 }
 
-/* Controls */
-.pub-controls {
-    background: var(--card);
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-}
+/* --------------------------------------------------
+   OPTIONAL COMPONENTS (GALLERY, METRICS, GRAPH)
+-------------------------------------------------- */
 
-.pub-controls select,
-.pub-controls input {
-    padding: 6px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-}
-
-/* Gallery */
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -125,7 +214,6 @@ footer {
     border: 2px solid var(--accent);
 }
 
-/* Metrics dashboard */
 .metrics-dashboard {
     display: flex;
     gap: 20px;
@@ -152,124 +240,10 @@ footer {
     margin: 10px 0 0 0;
 }
 
-/* Co-author graph container */
 #coauthorGraph {
     width: 100%;
     height: 600px;
     border-radius: 10px;
     background: var(--card);
     margin-top: 20px;
-}
-
-
-.contact-card {
-  background: #f7f7f7;
-  padding: 1.5rem;
-  border-radius: 10px;
-  max-width: 500px;
-  margin-top: 1.5rem;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-}
-
-.contact-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.contact-list li {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.8rem;
-  font-size: 1.05rem;
-}
-
-.contact-list .icon {
-  font-size: 1.3rem;
-  margin-right: 0.7rem;
-}
-
-/* Responsive layout */
-@media (max-width: 600px) {
-  .contact-card {
-    padding: 1.2rem;
-    max-width: 100%;
-  }
-
-  .contact-list li {
-    font-size: 1rem;
-  }
-
-  .contact-list .icon {
-    font-size: 1.2rem;
-  }
-}
-.two-column {
-  display: flex;
-  gap: 2rem;
-  align-items: flex-start;
-}
-
-/* Left column takes more width */
-.left-column {
-  flex: 2;
-}
-
-/* Right column (contact card) */
-.right-column {
-  flex: 1;
-  position: sticky;
-  top: 1rem;
-}
-
-/* Contact card styling */
-.contact-card {
-  background: #f7f7f7;
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-}
-
-.contact-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.contact-list li {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.8rem;
-  font-size: 1.05rem;
-}
-
-.contact-list .icon {
-  font-size: 1.3rem;
-  margin-right: 0.7rem;
-}
-
-/* Responsive layout for mobile */
-@media (max-width: 900px) {
-  .two-column {
-    flex-direction: column;
-  }
-
-  .right-column {
-    position: static;
-    width: 100%;
-  }
-}
-/* Profile photo styling */
-.profile-photo-container {
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.profile-photo {
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 3px solid #ddd;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
 }
