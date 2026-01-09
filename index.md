@@ -6,8 +6,7 @@ title: Home
 <div class="two-column">
 
   <!-- LEFT COLUMN -->
-  <div class="left-column">
-<div class="left-column" markdown="1">
+  <div class="left-column" markdown="1">
 
 ## Welcome
 
@@ -30,6 +29,9 @@ My expertise in both the technical execution of complex experiments and the oper
 ## Recent Publications
 
 <div id="recentPubs"></div>
+
+  </div> <!-- END LEFT COLUMN -->
+
 
 <script>
 fetch("{{ '/assets/data/scholar.json' | relative_url }}")
@@ -65,8 +67,6 @@ fetch("{{ '/assets/data/scholar.json' | relative_url }}")
       "<p>Error loading publications.</p>";
   });
 </script>
-
-  </div> <!-- END LEFT COLUMN -->
 
 
   <!-- RIGHT COLUMN -->
@@ -129,4 +129,3 @@ fetch("{{ '/assets/data/scholar.json' | relative_url }}")
   </div> <!-- END RIGHT COLUMN -->
 
 </div> <!-- END TWO COLUMN -->
-
