@@ -256,3 +256,8 @@ footer {
   padding: 1.5rem;
   border-radius: 12px;
 }
+.contact-card {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
