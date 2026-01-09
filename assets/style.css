@@ -248,17 +248,22 @@ footer {
     margin-top: 20px;
 }
 
+/* Polished right-column card */
 .right-column {
-  flex: 1;
-  position: sticky;
-  top: 1rem;
-  background: var(--card); /* or any color */
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    flex: 1;
+    position: sticky;
+    top: 1rem;
+    background: var(--card);
+    padding: 2rem 1.5rem;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    border: 1px solid rgba(0,0,0,0.06);
 }
-.contact-card {
-  background: transparent;
-  box-shadow: none;
-  padding: 0;
+
+/* Dark mode border fix */
+@media (prefers-color-scheme: dark) {
+    .right-column {
+        border: 1px solid rgba(255,255,255,0.08);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+    }
 }
