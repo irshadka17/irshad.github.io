@@ -1,5 +1,10 @@
-fetch("/assets/data/scholar.json")
-  .then(response => response.json())
+fetch("{{ '/assets/data/scholar.json' | relative_url }}")
+  .then(response => {
+    if (!response.ok) {
+      throw new Error("Network response was not OK: " + response.status);
+    }
+    return response.json();
+  })
   .then(data => {
     console.log("Loaded scholar.json:", data);
 
