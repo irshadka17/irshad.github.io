@@ -1,6 +1,6 @@
 {
   "metrics": {
-    "total_citations": 234,
+    "total_citations": 232,
     "h_index": 8,
     "i10_index": 7,
     "citations_per_year": {}
@@ -20,7 +20,7 @@
     },
     {
       "title": "An Experimental Investigation Unravelling the Aberrant Thermo-Mechanical Behaviour of Re-loaded Zeolite Na-A",
-      "cited_by": 2
+      "cited_by": 1
     },
     {
       "title": "Low-temperature spin-phonon coupling and high-pressure phase transitions in the honeycomb magnetoelectric",
@@ -72,7 +72,7 @@
     },
     {
       "title": "Structural Stability and Phase Transitions in Zeolite A: An In Situ High Pressure\u2013High Temperature Investigation",
-      "cited_by": 3
+      "cited_by": 2
     },
     {
       "title": "High-Pressure High-Temperature Structural Stability of Zeolite-A",
