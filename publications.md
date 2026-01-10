@@ -468,18 +468,18 @@ function convertToLinks(text) {
   // Detect normal URLs
   const urlRegex = /(https?:\/\/[^\s]+)/g;
 
-  // Replace DOI with formatted link
+  // Convert DOI to clickable link but KEEP original text
   text = text.replace(doiRegex, doi => {
     const url = `https://doi.org/${doi}`;
     return `
       <a href="${url}" target="_blank" 
          style="color:#0066cc; text-decoration:underline;">
-         DOI: ${doi} <span style="font-size:0.9em;">🔗</span>
+         ${doi} <span style="font-size:0.9em;">🔗</span>
       </a>
     `;
   });
 
-  // Replace normal URLs with styled link + icon
+  // Convert normal URLs to clickable links but KEEP original text
   text = text.replace(urlRegex, url => {
     return `
       <a href="${url}" target="_blank" 
@@ -505,6 +505,7 @@ loadCitationStats();
   padding: 4px 8px;
 }
 </style>
+
 
 
 
