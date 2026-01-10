@@ -112,8 +112,10 @@ async function loadRecentPublications() {
       container.innerHTML += `
         <div class="pub-card" style="margin-bottom: 1rem;">
 
-          <!-- Two-column alignment for serial number + title -->
+          <!-- Two-column layout for ALL content -->
           <div style="display: flex; align-items: flex-start; gap: 10px;">
+
+            <!-- Left column: serial number -->
             <div style="
               width: 32px;
               text-align: right;
@@ -123,23 +125,28 @@ async function loadRecentPublications() {
               ${index + 1}.
             </div>
 
-            <h3 style="margin: 0; line-height: 1.3;">
-              ${pub.title}
-            </h3>
-          </div>
+            <!-- Right column: title + metadata -->
+            <div style="flex: 1;">
 
-          <p style="margin: 0.2rem 0;">
-            <strong>Authors:</strong> ${pub.authors}
-          </p>
+              <h3 style="margin: 0; line-height: 1.3;">
+                ${pub.title}
+              </h3>
 
-          <!-- ⭐ IOP Vancouver formatted reference line -->
-          <p style="margin: 0.2rem 0;">
-            <strong>Ref:</strong> ${refLine}
-          </p>
+              <p style="margin: 0.2rem 0;">
+                <strong>Authors:</strong> ${pub.authors}
+              </p>
 
-          <p style="margin: 0.2rem 0;">
-            <strong>DOI:</strong> ${doiLink}
-          </p>
+              <p style="margin: 0.2rem 0;">
+                <strong>Ref:</strong> ${refLine}
+              </p>
+
+              <p style="margin: 0.2rem 0;">
+                <strong>DOI:</strong> ${doiLink}
+              </p>
+
+            </div> <!-- END right column -->
+
+          </div> <!-- END flex row -->
 
         </div>
       `;
@@ -152,7 +159,6 @@ async function loadRecentPublications() {
 
 loadRecentPublications();
 </script>
-
 
   <!-- RIGHT COLUMN -->
   <div class="right-column" markdown="1">
@@ -212,3 +218,4 @@ loadRecentPublications();
   </div> <!-- END RIGHT COLUMN -->
 
 </div> <!-- END TWO COLUMN -->
+
