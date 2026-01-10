@@ -181,31 +181,59 @@ function applyFilters() {
 }
 
 // ------------------------------
-// CHART
+// DUAL‑AXIS CHART
 // ------------------------------
 function drawCitationChart() {
   const ctx = document.getElementById('citationChart').getContext('2d');
 
   const years = Object.keys(citationHistory).sort((a, b) => a - b);
-  const counts = years.map(y => citationHistory[y]);
+  const citationCounts = years.map(y => citationHistory[y]);
+
+  // Count publications per year
+  const pubCounts = years.map(y =>
+    publications.filter(p => p.year == y).length
+  );
 
   new Chart(ctx, {
     type: 'line',
     data: {
       labels: years,
-      datasets: [{
-        data: counts,
-        borderColor: '#007acc',
-        backgroundColor: 'rgba(0, 122, 204, 0.2)',
-        fill: true,
-        tension: 0.3
-      }]
+      datasets: [
+        {
+          label: 'Citations per Year',
+          data: citationCounts,
+          borderColor: '#007acc',
+          backgroundColor: 'rgba(0, 122, 204, 0.2)',
+          fill: true,
+          tension: 0.3,
+          yAxisID: 'y'
+        },
+        {
+          label: 'Publications per Year',
+          data: pubCounts,
+          borderColor: '#cc5500',
+          backgroundColor: 'rgba(204, 85, 0, 0.2)',
+          fill: false,
+          tension: 0.3,
+          yAxisID: 'y1'
+        }
+      ]
     },
     options: {
-      plugins: { legend: { display: false } },
+      plugins: { legend: { display: true }},
       scales: {
         x: { title: { display: true, text: 'Year' }},
-        y: { title: { display: true, text: 'Citations per Year' }, beginAtZero: true }
+        y: { 
+          title: { display: true, text: 'Citations per Year' },
+          beginAtZero: true,
+          position: 'left'
+        },
+        y1: {
+          title: { display: true, text: 'Publications per Year' },
+          beginAtZero: true,
+          position: 'right',
+          grid: { drawOnChartArea: false }
+        }
       }
     }
   });
