@@ -4,40 +4,60 @@ title: Publications
 ---
 
 # Publications
-
 ### Peer Reviewed Journal Publications
-<!-- This page loads publication metadata directly from DOIs.
-Update assets/dois.txt to add new papers. -->
 
-<!-- Search + Filters + Sort Controls -->
-<div id="controls" style="margin-bottom: 1.5rem;">
+<!--
+This page loads publication metadata directly from DOIs.
+Update assets/dois.txt to add new papers.
+-->
 
-  <!-- Search -->
-  <label><strong>Search:</strong></label>
-  <input type="text" id="searchInput" placeholder="Search title, author, journal…" style="padding: 4px 8px; width: 250px;">
+<!-- Two-column layout -->
+<div id="pub-layout" style="display: flex; gap: 2rem; align-items: flex-start;">
 
-  <!-- Year Filter -->
-  <label style="margin-left: 1rem;"><strong>Year:</strong></label>
-  <select id="yearFilter">
-    <option value="all">All Years</option>
-  </select>
+  <!-- LEFT COLUMN: Publications -->
+  <div id="pub-left" style="flex: 3; min-width: 300px;">
 
-  <!-- Sort -->
-  <label style="margin-left: 1rem;"><strong>Sort by:</strong></label>
-  <select id="sortSelect">
-    <option value="year-desc">Year (newest first)</option>
-    <option value="year-asc">Year (oldest first)</option>
-    <option value="citations-desc">Citations (high → low)</option>
-    <option value="citations-asc">Citations (low → high)</option>
-    <option value="title-asc">Title (A → Z)</option>
-    <option value="title-desc">Title (Z → A)</option>
-  </select>
+    <!-- Search + Filters + Sort Controls -->
+    <div id="controls" style="margin-bottom: 1.5rem;">
+
+      <!-- Search -->
+      <label><strong>Search:</strong></label>
+      <input type="text" id="searchInput" placeholder="Search title, author, journal…" style="padding: 4px 8px; width: 250px;">
+
+      <!-- Year Filter -->
+      <label style="margin-left: 1rem;"><strong>Year:</strong></label>
+      <select id="yearFilter">
+        <option value="all">All Years</option>
+      </select>
+
+      <!-- Sort -->
+      <label style="margin-left: 1rem;"><strong>Sort by:</strong></label>
+      <select id="sortSelect">
+        <option value="year-desc">Year (newest first)</option>
+        <option value="year-asc">Year (oldest first)</option>
+        <option value="citations-desc">Citations (high → low)</option>
+        <option value="citations-asc">Citations (low → high)</option>
+        <option value="title-asc">Title (A → Z)</option>
+        <option value="title-desc">Title (Z → A)</option>
+      </select>
+
+    </div>
+
+    <div id="pub-container">
+      <p>Loading publications…</p>
+    </div>
+
+  </div>
+
+  <!-- RIGHT COLUMN: Citation Timeline -->
+  <div id="pub-right" style="flex: 2; min-width: 250px;">
+    <canvas id="citationChart"></canvas>
+  </div>
 
 </div>
 
-<div id="pub-container">
-  <p>Loading publications…</p>
-</div>
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
 // Load DOI list
@@ -54,15 +74,19 @@ async function fetchCrossRef(doi) {
   return (await response.json()).message;
 }
 
-// Fetch citation count from OpenAlex
+// Fetch citation count + history from OpenAlex
 async function fetchOpenAlex(doi) {
   const url = `https://api.openalex.org/works/doi:${encodeURIComponent(doi)}`;
   const response = await fetch(url);
   const data = await response.json();
-  return data.cited_by_count || 0;
+  return {
+    citations: data.cited_by_count || 0,
+    history: data.counts_by_year || []
+  };
 }
 
 let publications = []; // store all publications
+let citationHistory = {}; // year → total citations
 
 // Render publication card
 function renderPublication(pub) {
@@ -88,19 +112,14 @@ function applyFilters() {
   const sortValue = document.getElementById('sortSelect').value;
 
   let filtered = publications.filter(pub => {
-    // Year filter
     const yearMatch = (yearValue === 'all' || pub.year == yearValue);
-
-    // Search filter
     const searchMatch =
       pub.title.toLowerCase().includes(searchValue) ||
       pub.authors.toLowerCase().includes(searchValue) ||
       pub.journal.toLowerCase().includes(searchValue);
-
     return yearMatch && searchMatch;
   });
 
-  // Sorting
   filtered.sort((a, b) => {
     switch (sortValue) {
       case 'year-desc': return b.year - a.year;
@@ -112,9 +131,37 @@ function applyFilters() {
     }
   });
 
-  // Render
   const container = document.getElementById('pub-container');
   container.innerHTML = filtered.map(renderPublication).join('');
+}
+
+// Draw citation timeline
+function drawCitationChart() {
+  const ctx = document.getElementById('citationChart').getContext('2d');
+
+  const years = Object.keys(citationHistory).sort((a, b) => a - b);
+  const counts = years.map(y => citationHistory[y]);
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: years,
+      datasets: [{
+        data: counts,
+        borderColor: '#007acc',
+        backgroundColor: 'rgba(0, 122, 204, 0.2)',
+        fill: true,
+        tension: 0.3
+      }]
+    },
+    options: {
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { title: { display: false } },
+        y: { title: { display: false }, beginAtZero: true }
+      }
+    }
+  });
 }
 
 // Main loader
@@ -124,13 +171,13 @@ async function loadPublications() {
 
   const dois = await loadDOIs();
   publications = [];
-
+  citationHistory = {};
   const years = new Set();
 
   for (const doi of dois) {
     try {
       const meta = await fetchCrossRef(doi);
-      const citations = await fetchOpenAlex(doi);
+      const openalex = await fetchOpenAlex(doi);
 
       const authors = meta.author
         ? meta.author.map(a => `${a.given} ${a.family}`).join(', ')
@@ -153,8 +200,15 @@ async function loadPublications() {
         volume,
         issue,
         pages,
-        citations,
+        citations: openalex.citations,
         doi
+      });
+
+      // Aggregate citation history
+      openalex.history.forEach(entry => {
+        const y = entry.year;
+        const c = entry.cited_by_count;
+        citationHistory[y] = (citationHistory[y] || 0) + c;
       });
 
     } catch (err) {
@@ -168,8 +222,8 @@ async function loadPublications() {
     yearFilter.innerHTML += `<option value="${y}">${y}</option>`;
   });
 
-  // Initial render
   applyFilters();
+  drawCitationChart();
 }
 
 // Event listeners
@@ -187,6 +241,9 @@ loadPublications();
 #controls select, #controls input {
   padding: 4px 8px;
 }
+@media (max-width: 900px) {
+  #pub-layout {
+    flex-direction: column;
+  }
+}
 </style>
-
-
