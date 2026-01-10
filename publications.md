@@ -147,10 +147,10 @@ async function fetchOpenAlex(doi) {
 let publications = [];
 let citationHistory = {};
 
-function renderPublication(pub) {
+function renderPublication(pub, index) {
   return `
     <div class="pub-card">
-      <h3>${pub.title}</h3>
+      <h3>${index + 1}. ${pub.title}</h3>
       <p><strong>Authors:</strong> ${pub.authors}</p>
       <p><strong>Journal:</strong> ${pub.journal} (${pub.year})</p>
       <p><strong>Volume:</strong> ${pub.volume || '—'}  
@@ -162,7 +162,6 @@ function renderPublication(pub) {
     <hr>
   `;
 }
-
 function applyFilters() {
   const yearValue = document.getElementById('yearFilter').value;
   const searchValue = document.getElementById('searchInput').value.toLowerCase();
@@ -189,7 +188,8 @@ function applyFilters() {
   });
 
   document.getElementById('pub-container').innerHTML =
-    filtered.map(renderPublication).join('');
+    filtered.map((pub, i) => renderPublication(pub, i)).join('');
+
 }
 
 // ------------------------------
@@ -361,5 +361,6 @@ loadCitationStats();
   padding: 4px 8px;
 }
 </style>
+
 
 
