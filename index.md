@@ -34,18 +34,34 @@ My expertise in both the technical execution of complex experiments and the oper
 
 
 <script>
-fetch("{{ '/assets/data/publications.json' | relative_url }}")
-  .then(response => response.json())
-  .then(data => {
-    const pubs = data.publications || [];
+async function loadRecentFromDOIs() {
+  const container = document.getElementById("recentPubs");
+  container.innerHTML = "Loading…";
 
-    // Filter valid entries with a year
-    const valid = pubs.filter(p => p.year);
+  try {
+    // Load dois.txt
+    const doiResponse = await fetch("{{ '/assets/data/dois.txt' | relative_url }}");
+    const doiText = await doiResponse.text();
+    const dois = doiText
+      .split("\n")
+      .map(d => d.trim())
+      .filter(d => d.length > 0);
 
-    // Sort by year (descending) and take top 5
-    const recent = valid.sort((a, b) => b.year - a.year).slice(0, 5);
+    // Load publications.json
+    const pubResponse = await fetch("{{ '/assets/data/publications.json' | relative_url }}");
+    const pubData = await pubResponse.json();
+    const pubs = pubData.publications || [];
 
-    const container = document.getElementById("recentPubs");
+    // Match DOIs in order
+    const matched = [];
+    dois.forEach(doi => {
+      const pub = pubs.find(p => p.doi === doi);
+      if (pub) matched.push(pub);
+    });
+
+    // Take first 5
+    const recent = matched.slice(0, 5);
+
     container.innerHTML = "";
 
     if (recent.length === 0) {
@@ -57,11 +73,6 @@ fetch("{{ '/assets/data/publications.json' | relative_url }}")
       const doiLink = pub.doi
         ? `<a href="https://doi.org/${pub.doi}" target="_blank">${pub.doi}</a>`
         : "—";
-
-      const volume = pub.volume || "—";
-      const issue = pub.issue || "—";
-      const pages = pub.pages || "—";
-      const authors = pub.authors || "—";
 
       container.innerHTML += `
         <div class="pub-card" style="margin-bottom: 1rem;">
@@ -80,11 +91,11 @@ fetch("{{ '/assets/data/publications.json' | relative_url }}")
           </h3>
 
           <p style="margin: 0.2rem 0;">
-            <strong>Authors:</strong> ${authors}
+            <strong>Authors:</strong> ${pub.authors || "—"}
           </p>
 
           <p style="margin: 0.2rem 0;">
-            <strong>Year:</strong> ${pub.year}
+            <strong>Year:</strong> ${pub.year || "—"}
           </p>
 
           <p style="margin: 0.2rem 0;">
@@ -92,11 +103,11 @@ fetch("{{ '/assets/data/publications.json' | relative_url }}")
           </p>
 
           <p style="margin: 0.2rem 0;">
-            <strong>Volume:</strong> ${volume}
+            <strong>Volume:</strong> ${pub.volume || "—"}
             &nbsp;&nbsp;
-            <strong>Issue:</strong> ${issue}
+            <strong>Issue:</strong> ${pub.issue || "—"}
             &nbsp;&nbsp;
-            <strong>Pages:</strong> ${pages}
+            <strong>Pages:</strong> ${pub.pages || "—"}
           </p>
 
           <p style="margin: 0.2rem 0;">
@@ -106,13 +117,15 @@ fetch("{{ '/assets/data/publications.json' | relative_url }}")
         </div>
       `;
     });
-  })
-  .catch(err => {
+
+  } catch (err) {
     document.getElementById("recentPubs").innerHTML =
       "<p>Error loading publications.</p>";
-  });
-</script>
+  }
+}
 
+loadRecentFromDOIs();
+</script>
 
   <!-- RIGHT COLUMN -->
   <div class="right-column" markdown="1">
@@ -172,6 +185,7 @@ fetch("{{ '/assets/data/publications.json' | relative_url }}")
   </div> <!-- END RIGHT COLUMN -->
 
 </div> <!-- END TWO COLUMN -->
+
 
 
 
