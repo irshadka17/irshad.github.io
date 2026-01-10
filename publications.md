@@ -150,19 +150,19 @@ let citationHistory = {};
 function renderPublication(pub, index) {
   return `
     <div class="pub-card">
-      
       <h3>
-  <span style="
-    display: inline-block;
-    width: 28px;
-    text-align: right;
-    margin-right: 8px;
-    font-weight: bold;
-  ">
-    ${index + 1}.
-  </span>
-  ${pub.title}
-</h3>
+        <span style="
+          display: inline-block;
+          width: 32px;
+          text-align: right;
+          margin-right: 10px;
+          font-weight: bold;
+        ">
+          ${index + 1}.
+        </span>
+        ${pub.title}
+      </h3>
+
       <p><strong>Authors:</strong> ${pub.authors}</p>
       <p><strong>Journal:</strong> ${pub.journal} (${pub.year})</p>
       <p><strong>Volume:</strong> ${pub.volume || '—'}  
@@ -373,6 +373,7 @@ loadCitationStats();
   padding: 4px 8px;
 }
 </style>
+
 
 
 
