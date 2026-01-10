@@ -21,17 +21,6 @@ Update <code>assets/dois.txt</code> to add new papers.</p>
     <option value="all">All Years</option>
   </select>
 
-  <!-- Citation Filter -->
-  <label style="margin-left: 1rem;"><strong>Citations:</strong></label>
-  <select id="citationFilter">
-    <option value="all">All</option>
-    <option value="0-10">0–10</option>
-    <option value="10-50">10–50</option>
-    <option value="50-100">50–100</option>
-    <option value="100-500">100–500</option>
-    <option value="500+">500+</option>
-  </select>
-
   <!-- Sort -->
   <label style="margin-left: 1rem;"><strong>Sort by:</strong></label>
   <select id="sortSelect">
@@ -91,10 +80,9 @@ function renderPublication(pub) {
   `;
 }
 
-// Apply all filters + search + sort
+// Apply search + year filter + sort
 function applyFilters() {
   const yearValue = document.getElementById('yearFilter').value;
-  const citationValue = document.getElementById('citationFilter').value;
   const searchValue = document.getElementById('searchInput').value.toLowerCase();
   const sortValue = document.getElementById('sortSelect').value;
 
@@ -102,24 +90,13 @@ function applyFilters() {
     // Year filter
     const yearMatch = (yearValue === 'all' || pub.year == yearValue);
 
-    // Citation filter
-    let citationMatch = true;
-    if (citationValue !== 'all') {
-      if (citationValue.endsWith('+')) {
-        citationMatch = pub.citations >= parseInt(citationValue);
-      } else {
-        const [min, max] = citationValue.split('-');
-        citationMatch = pub.citations >= parseInt(min) && pub.citations <= parseInt(max);
-      }
-    }
-
     // Search filter
     const searchMatch =
       pub.title.toLowerCase().includes(searchValue) ||
       pub.authors.toLowerCase().includes(searchValue) ||
       pub.journal.toLowerCase().includes(searchValue);
 
-    return yearMatch && citationMatch && searchMatch;
+    return yearMatch && searchMatch;
   });
 
   // Sorting
@@ -196,7 +173,6 @@ async function loadPublications() {
 
 // Event listeners
 document.getElementById('yearFilter').addEventListener('change', applyFilters);
-document.getElementById('citationFilter').addEventListener('change', applyFilters);
 document.getElementById('searchInput').addEventListener('input', applyFilters);
 document.getElementById('sortSelect').addEventListener('change', applyFilters);
 
