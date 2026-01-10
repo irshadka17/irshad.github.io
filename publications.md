@@ -462,34 +462,12 @@ async function loadTextSection(url, elementId) {
 // Convert URLs and DOIs into styled clickable links
 // ------------------------------
 function convertToLinks(text) {
-  // Detect DOI patterns
-  const doiRegex = /\b10\.\d{4,9}\/[^\s]+/g;
-
-  // Detect normal URLs
+  // Match ONLY real URLs starting with http:// or https://
   const urlRegex = /(https?:\/\/[^\s]+)/g;
 
-  // Convert DOI to clickable link but KEEP original text
-  text = text.replace(doiRegex, doi => {
-    const url = `https://doi.org/${doi}`;
-    return `
-      <a href="${url}" target="_blank" 
-         style="color:#0066cc; text-decoration:underline;">
-         ${doi} <span style="font-size:0.9em;">🔗</span>
-      </a>
-    `;
+  return text.replace(urlRegex, url => {
+    return `<a href="${url}" target="_blank" style="color:#0066cc; text-decoration:underline;">${url}</a>`;
   });
-
-  // Convert normal URLs to clickable links but KEEP original text
-  text = text.replace(urlRegex, url => {
-    return `
-      <a href="${url}" target="_blank" 
-         style="color:#0066cc; text-decoration:underline;">
-         ${url} <span style="font-size:0.9em;">🔗</span>
-      </a>
-    `;
-  });
-
-  return text;
 }
 loadPublications();
 loadTextSection('{{ "/assets/conference_proceedings.txt" | relative_url }}', "conferenceProceedings");
@@ -505,6 +483,7 @@ loadCitationStats();
   padding: 4px 8px;
 }
 </style>
+
 
 
 
