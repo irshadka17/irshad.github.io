@@ -1,0 +1,10 @@
+1.  Hard X-ray Diffraction Beamlines at Elettra for Material Science: The Present and the Future. B. Joseph, G. Bais, L. Gigli, F. Alabarse, K. A Irshad, L. Barba, A. Cassetta, P. K. Mondal, H. Poswal and D. Sarma, Acta Cryst. A80, e 350 (2024).
+    doi: http://dx.doi.org/10.1107/S2053273324096499
+2.  High pressure equation of state of Na6Mn(SO4)4 vanthoffite Pradhan M., Dutta A., Irshad K. A., Joseph B., Guru Row T. N., Swain D., Pradhan G. K, Acta Crystallographica Section A: Foundations and Advances, Vol. A79, p. C907 (2024).
+    doi: http://dx.doi.org/10.1107/S2053273323087144
+3.  Pressure-driven structural and electronic phase transitions in type II multiferroic MnSb2Se4 Joseph A., Kumar R., Sunil J., Joseph B., Irshad K. A., Sundaresan A., Narayana C. Acta Crystallographica Section A: Foundations and Advances, Vol. A79, p. C909, (Abstracts of the XXVI IUCr Congress, Melbourne, Australia, August 2023)
+    doi: http://dx.doi.org/10.1107/S2053273323087120
+4.  Theoretical and experimental investigation of different phases in as cast equiatomic CrFeMoNbV alloys. A. Saikumaran, R. Mythili, S. Saroja, K. A. Irshad, S. Kalavathy, and Rajesh Ganesan, AIP Conference Proceedings 2115, 030018 (2019). 
+    doi: https://doi.org/10.1063/1.5112857
+5.  Polymorphism in rare earth sesquioxides: dependence on pressure and cationic radii. K. A. Irshad, N. V. Chandra Shekar and S. Kalavathi, Acta Crystallographica Section A 73 (a2), C1256 (2017).
+    doi: http://dx.doi.org/10.1107/S2053273317083188
