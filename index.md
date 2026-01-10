@@ -103,18 +103,21 @@ async function loadRecentPublications() {
       container.innerHTML += `
         <div class="pub-card" style="margin-bottom: 1rem;">
 
-          <h3 style="margin-bottom: 0.3rem;">
-            <span style="
-              display: inline-block;
-              width: 28px;
+          <!-- Two-column alignment for serial number + title -->
+          <div style="display: flex; align-items: flex-start; gap: 10px;">
+            <div style="
+              width: 32px;
               text-align: right;
-              margin-right: 8px;
               font-weight: bold;
+              flex-shrink: 0;
             ">
               ${index + 1}.
-            </span>
-            ${pub.title}
-          </h3>
+            </div>
+
+            <h3 style="margin: 0; line-height: 1.3;">
+              ${pub.title}
+            </h3>
+          </div>
 
           <p style="margin: 0.2rem 0;">
             <strong>Authors:</strong> ${pub.authors}
