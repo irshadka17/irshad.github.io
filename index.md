@@ -60,12 +60,18 @@ async function loadRecentPublications() {
         const cr = data.message;
 
         const title = cr.title ? cr.title[0] : "Untitled";
-        const authors = cr.author
+
+        // Build authors list + bold your name
+        let authors = cr.author
           ? cr.author.map(a => `${a.given} ${a.family}`).join(", ")
           : "Unknown authors";
+
+        authors = authors.replace(/Irshad/gi, "<strong>Irshad</strong>");
+
         const journal = cr["container-title"]
-          ? cr["container-title"][0]
-          : "Unknown journal";
+          ? `<em>${cr["container-title"][0]}</em>`   // italicized journal
+          : "<em>Unknown journal</em>";
+
         const year = cr.issued
           ? cr.issued["date-parts"][0][0]
           : "—";
@@ -218,4 +224,5 @@ loadRecentPublications();
   </div> <!-- END RIGHT COLUMN -->
 
 </div> <!-- END TWO COLUMN -->
+
 
