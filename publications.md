@@ -149,27 +149,33 @@ let citationHistory = {};
 
 function renderPublication(pub, index) {
   return `
-    <div class="pub-card">
-      <h3>
-        <span style="
-          display: inline-block;
-          width: 32px;
-          text-align: right;
-          margin-right: 10px;
-          font-weight: bold;
-        ">
-          ${index + 1}.
-        </span>
-        ${pub.title}
-      </h3>
+    <div class="pub-card" style="display: flex; gap: 16px; align-items: flex-start;">
 
-      <p><strong>Authors:</strong> ${pub.authors}</p>
-      <p><strong>Journal:</strong> ${pub.journal} (${pub.year})</p>
-      <p><strong>Volume:</strong> ${pub.volume || '—'}  
-         <strong>Issue:</strong> ${pub.issue || '—'}  
-         <strong>Pages:</strong> ${pub.pages || '—'}</p>
-      <p><strong>Citations:</strong> ${pub.citations}</p>
-      <p><a href="https://doi.org/${pub.doi}" target="_blank">DOI: ${pub.doi}</a></p>
+      <!-- Number column -->
+      <div style="
+        width: 40px;
+        text-align: right;
+        font-weight: bold;
+        font-size: 1.2em;
+        padding-top: 4px;
+      ">
+        ${index + 1}.
+      </div>
+
+      <!-- Publication details column -->
+      <div style="flex: 1;">
+        <h3 style="margin-top: 0;">${pub.title}</h3>
+        <p><strong>Authors:</strong> ${pub.authors}</p>
+        <p><strong>Journal:</strong> ${pub.journal} (${pub.year})</p>
+        <p>
+          <strong>Volume:</strong> ${pub.volume || '—'}  
+          <strong>Issue:</strong> ${pub.issue || '—'}  
+          <strong>Pages:</strong> ${pub.pages || '—'}
+        </p>
+        <p><strong>Citations:</strong> ${pub.citations}</p>
+        <p><a href="https://doi.org/${pub.doi}" target="_blank">DOI: ${pub.doi}</a></p>
+      </div>
+
     </div>
     <hr>
   `;
@@ -373,6 +379,7 @@ loadCitationStats();
   padding: 4px 8px;
 }
 </style>
+
 
 
 
