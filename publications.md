@@ -85,6 +85,7 @@ Update assets/dois.txt to add new papers.
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://d3js.org/d3.v7.min.js"></script>
 
+{% raw %}
 <script>
 // ===============================
 //  CONFIGURATION
@@ -185,7 +186,9 @@ let publications = [];
 let citationHistory = {};
 let coauthorEdges = [];
 let coauthorNodes = {};
+{% endraw %}
 
+{% raw %}
 <script>
 // ===============================
 //  CITATION TIMELINE (DUAL AXIS)
@@ -364,7 +367,9 @@ function drawCoauthorGraph() {
   }
 }
 </script>
+{% endraw %}
 
+{% raw %}
 <script>
 // ===============================
 //  RENDER PUBLICATION CARD
@@ -514,3 +519,4 @@ loadPublications();
   background: #fafafa;
 }
 </style>
+{% endraw %}
