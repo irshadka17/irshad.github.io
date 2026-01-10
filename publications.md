@@ -12,7 +12,7 @@ Update assets/dois.txt to add new papers.
 -->
 
 <!-- Citation Timeline at Top -->
-<div style="margin-bottom: 3rem;">
+<div style="margin-bottom: 3rem; width: 50%; min-width: 300px;">
   <canvas id="citationChart"></canvas>
 </div>
 
@@ -318,3 +318,4 @@ loadPublications();
   padding: 4px 8px;
 }
 </style>
+
