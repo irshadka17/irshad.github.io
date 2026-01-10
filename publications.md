@@ -383,7 +383,7 @@ async function loadCitationStats() {
   }
 }
 // ------------------------------
-// LOAD TEXT FILE + NUMBERING + INDENTATION
+// LOAD TEXT FILE + NUMBERING + CLEAN INDENTATION
 // ------------------------------
 async function loadTextSection(url, elementId) {
   const container = document.getElementById(elementId);
@@ -403,7 +403,7 @@ async function loadTextSection(url, elementId) {
     rawLines.forEach(line => {
       // Continuation line if starts with "-", tab, or leading spaces
       if (/^[-\t ]/.test(line)) {
-        current.push(line.trim());
+        current.push(line.replace(/^[-\t ]+/, "")); // remove leading markers
       } else {
         if (current.length > 0) entries.push(current);
         current = [line.trim()];
@@ -437,8 +437,8 @@ async function loadTextSection(url, elementId) {
                 subs
                   .map(
                     sub => `
-                    <div style="margin-left: 20px; color: #444;">
-                      • ${sub}
+                    <div style="margin-left: 20px;">
+                      ${sub}
                     </div>
                   `
                   )
@@ -471,6 +471,7 @@ loadCitationStats();
   padding: 4px 8px;
 }
 </style>
+
 
 
 
