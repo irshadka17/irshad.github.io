@@ -40,7 +40,7 @@ async function loadRecentFromDOIs() {
 
   try {
     // Load dois.txt from data/
-    const doiResponse = await fetch("{{ '/data/dois.txt' | relative_url }}");
+    const doiResponse = await fetch("{{ '/assets/dois.txt' | relative_url }}");
     const doiText = await doiResponse.text();
     const dois = doiText
       .split("\n")
@@ -185,6 +185,7 @@ loadRecentFromDOIs();
   </div> <!-- END RIGHT COLUMN -->
 
 </div> <!-- END TWO COLUMN -->
+
 
 
 
