@@ -58,7 +58,23 @@ Update assets/dois.txt to add new papers.
 <div id="pub-container">
   <p>Loading publications…</p>
 </div>
+<!-- ========================= -->
+<!--   CONFERENCE PROCEEDINGS -->
+<!-- ========================= -->
 
+<h2 style="margin-top: 3rem;">Conference Proceedings & Publications</h2>
+<div id="conferenceProceedings">
+  <p>Loading conference proceedings…</p>
+</div>
+
+<!-- ========================= -->
+<!--   CONFERENCE APPEARANCES -->
+<!-- ========================= -->
+
+<h2 style="margin-top: 3rem;">Appearances in National / International Conferences</h2>
+<div id="conferenceAppearances">
+  <p>Loading conference appearances…</p>
+</div>
 <!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -366,8 +382,32 @@ async function loadCitationStats() {
     table.innerHTML = "<tr><td>Error loading stats</td></tr>";
   }
 }
-  
+// ------------------------------
+// LOAD TEXT FILE INTO A DIV
+// ------------------------------
+async function loadTextSection(url, elementId) {
+  const container = document.getElementById(elementId);
+
+  try {
+    const response = await fetch(url);
+    const text = await response.text();
+
+    // Convert line breaks to <br>
+    const html = text
+      .split("\n")
+      .map(line => line.trim())
+      .filter(line => line.length > 0)
+      .join("<br>");
+
+    container.innerHTML = html;
+
+  } catch (err) {
+    container.innerHTML = "<p>Error loading section.</p>";
+  }
+}  
 loadPublications();
+loadTextSection('{{ "/assets/conference_proceedings.txt" | relative_url }}', "conferenceProceedings");
+loadTextSection('{{ "/assets/conference_appearances.txt" | relative_url }}', "conferenceAppearances");  
 loadCitationStats();  
 </script>
 
@@ -379,6 +419,7 @@ loadCitationStats();
   padding: 4px 8px;
 }
 </style>
+
 
 
 
